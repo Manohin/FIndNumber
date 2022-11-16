@@ -10,11 +10,11 @@ import AudioToolbox
 
 class GameViewController: UIViewController {
 
-    @IBOutlet var newGameButton: UIButton!
+    @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
-    @IBOutlet var statusLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var nextDigit: UILabel!
-    @IBOutlet var timerLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
     lazy var game = Game (countItems: buttons.count, time: 30) { [weak self] (status, time) in
         
         guard let self = self else { return }
