@@ -23,7 +23,9 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        newGameButton.layer.cornerRadius = 12
+        newGameButton.isHidden = true
         setupScreen()
     }
     
@@ -74,13 +76,14 @@ class GameViewController: UIViewController {
             timerLabel.isHidden = false
         case .win:
             timerLabel.isHidden = true
-            statusLabel.text = "Вы выиграли! 🙀 Счет: \(String(describing: timerLabel.text!))"
+            statusLabel.text = "Вы выиграли!\nСчет: \(String(describing: timerLabel.text!))"
             statusLabel.textColor = .systemGreen
             newGameButton.isHidden = false
         case .lose:
             statusLabel.text = "Вы проиграли!"
             statusLabel.textColor = .red
             newGameButton.isHidden = false
+            timerLabel.isHidden = true
         }
     }
 }
