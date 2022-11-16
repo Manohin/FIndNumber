@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class GameViewController: UIViewController {
 
@@ -32,7 +33,6 @@ class GameViewController: UIViewController {
     @IBAction func pressButton(_ sender: UIButton) {
         guard let buttonIndex = buttons.firstIndex(of: sender) else { return }
         game.check(index: buttonIndex)
-        
         updateUI()
     }
     
@@ -57,6 +57,7 @@ class GameViewController: UIViewController {
             if game.items[index].isError {
                 UIView.animate(withDuration: 0.3) {[weak self] in
                     self?.buttons[index].backgroundColor = .red
+                    AudioServicesPlaySystemSound(1521)
                 } completion: { [weak self] (_) in
                     self?.buttons[index].backgroundColor = .white
                     self?.game.items[index].isError = false
@@ -84,6 +85,7 @@ class GameViewController: UIViewController {
             statusLabel.textColor = .red
             newGameButton.isHidden = false
             timerLabel.isHidden = true
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         }
     }
 }

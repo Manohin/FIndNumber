@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AudioToolbox
 
 enum StatusGame {
     case start
@@ -19,8 +20,8 @@ class Game {
         var isError = false
     }
     
-    private let data = Array (1...99) // Массив чисел от 1 до 99
-    var items: [Item] = [] // Массив с количеством кнопок на экране
+    private let data = Array (1...99)
+    var items: [Item] = [] 
     var status: StatusGame = .start {
         didSet {
             if status != .start {
@@ -39,11 +40,11 @@ class Game {
         }
     }
     private var timer: Timer?
-    private var updateTimer:((StatusGame,Int)->Void)
+    private var updateTimer:((StatusGame,Int) -> Void)
     
     init(countItems: Int,
          time: Int,
-         updateTimer: @escaping (_ status: StatusGame,_ seconds: Int)-> Void) {
+         updateTimer: @escaping (_ status: StatusGame,_ seconds: Int) -> Void) {
         self.countItems = countItems
         self.timeForGame = time
         self.secondsGame = time
@@ -58,7 +59,7 @@ class Game {
         items.removeAll()
         
         while items.count < countItems {
-            var item = Item (title: String(digits.removeFirst()))
+            let item = Item (title: String(digits.removeFirst()))
             items.append(item)
         }
         
@@ -79,6 +80,7 @@ class Game {
         guard status == .start else { return }
         if items[index].title == nextItem?.title {
             items[index].isFound = true
+            AudioServicesPlaySystemSound(1519)
             nextItem = items.shuffled().first(where: { (item) -> Bool in
                 item.isFound == false
             })
