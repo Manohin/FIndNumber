@@ -200,7 +200,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxK-Qh-cge">
-                                <rect key="frame" x="90" y="115" width="213" height="38"/>
+                                <rect key="frame" x="90" y="145" width="213" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wl-dN-3Cs">
+                                <rect key="frame" x="16" y="106" width="361" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
@@ -213,6 +220,7 @@
                     <connections>
                         <outlet property="nextDigit" destination="MxK-Qh-cge" id="GzH-Wa-soU"/>
                         <outlet property="statusLabel" destination="271-9U-ARI" id="abJ-QW-UzY"/>
+                        <outlet property="timerLabel" destination="0wl-dN-3Cs" id="gyl-Ra-u0p"/>
                         <outletCollection property="buttons" destination="qJ1-1D-Jic" collectionClass="NSMutableArray" id="Qod-mY-tdS"/>
                         <outletCollection property="buttons" destination="8Yf-j8-Ao5" collectionClass="NSMutableArray" id="QKo-ym-Ucf"/>
                         <outletCollection property="buttons" destination="Vpd-i3-FqD" collectionClass="NSMutableArray" id="htK-dK-yrN"/>

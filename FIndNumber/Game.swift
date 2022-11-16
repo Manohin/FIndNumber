@@ -11,6 +11,8 @@ enum StatusGame {
     case start
     
     case win
+    
+    case lose
 }
 
 
@@ -27,17 +29,46 @@ class Game {
     
      var items: [Item] = [] // Массив с количеством кнопок на экране
     
-    var status: StatusGame = .start
+    var status: StatusGame = .start {
+        didSet {
+            if status != .start {
+                stopGame()
+            }
+        }
+    }
+    
+    private var timeForGame: Int {
+        didSet {
+            if timeForGame == 0 {
+                status = .lose
+            }
+            
+            updateTimer(status, timeForGame)
+            
+        }
+    }
+    
+    
+    private var timer: Timer?
+    
+    private var updateTimer:((StatusGame,Int)->Void)
+    
+    
+    init(countItems: Int,
+         time: Int,
+         updateTimer: @escaping (_ status: StatusGame,_ seconds: Int)-> Void) {
+        self.countItems = countItems // Количество кнопок в ините
+        self.timeForGame = time
+        self.updateTimer = updateTimer
+        setupGame()
+        
+    }
     
     private var countItems: Int // Количество кнопок
     
     var nextItem: Item?
     
-    init(countItems: Int) {
-        self.countItems = countItems // Количество кнопок в ините
-        setupGame()
-        
-    }
+    
     
     private func setupGame() {
         var digits = data.shuffled()  // Временный массив для каждой игры, в котором перемешанные цифры из массива data
@@ -54,6 +85,10 @@ class Game {
         nextItem = items.shuffled().first
         
         
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {  [weak self] (_) in
+            self?.timeForGame -= 1
+        })
     }
     
     func check(index:Int) -> Void {
@@ -69,6 +104,10 @@ class Game {
             status = .win
         }
         
+    }
+    
+    func stopGame() {
+        timer?.invalidate()
     }
     
 }
