@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum StatusGame {
+    case start
+    
+    case win
+}
+
+
+
 class Game {
     
     struct Item {
@@ -19,7 +27,11 @@ class Game {
     
      var items: [Item] = [] // Массив с количеством кнопок на экране
     
+    var status: StatusGame = .start
+    
     private var countItems: Int // Количество кнопок
+    
+    var nextItem: Item?
     
     init(countItems: Int) {
         self.countItems = countItems // Количество кнопок в ините
@@ -38,7 +50,25 @@ class Game {
             items.append(item)
             
         }
+        
+        nextItem = items.shuffled().first
+        
+        
     }
     
+    func check(index:Int) -> Void {
+        
+        if items[index].title == nextItem?.title {
+            items[index].isFound = true
+            nextItem = items.shuffled().first(where: { (item) -> Bool in
+                item.isFound == false
+            })
+        }
+        
+        if nextItem == nil {
+            status = .win
+        }
+        
+    }
     
 }

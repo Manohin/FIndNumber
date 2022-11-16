@@ -199,11 +199,20 @@
                                     <action selector="pressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yL3-Q7-a3b"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxK-Qh-cge">
+                                <rect key="frame" x="90" y="115" width="213" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                     </view>
                     <connections>
+                        <outlet property="nextDigit" destination="MxK-Qh-cge" id="GzH-Wa-soU"/>
+                        <outlet property="statusLabel" destination="271-9U-ARI" id="abJ-QW-UzY"/>
                         <outletCollection property="buttons" destination="qJ1-1D-Jic" collectionClass="NSMutableArray" id="Qod-mY-tdS"/>
                         <outletCollection property="buttons" destination="8Yf-j8-Ao5" collectionClass="NSMutableArray" id="QKo-ym-Ucf"/>
                         <outletCollection property="buttons" destination="Vpd-i3-FqD" collectionClass="NSMutableArray" id="htK-dK-yrN"/>
